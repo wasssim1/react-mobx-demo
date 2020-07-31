@@ -1,22 +1,25 @@
-import React from "react";
-import {observer} from "mobx-react";
-import DevTools from "mobx-react-devtools";
+import React, {Component} from "react";
+import {inject, observer} from "mobx-react";
 
-const Counter = observer(props => {
-	const {appState} = props;
+@inject("appState")
+@observer
+class Counter extends Component {
 
-	return (
-			<section>
-				<div>{appState.count}</div>
-				<div>
-					<button onClick={appState.incCount}>Inc</button>
-					<button onClick={appState.decCount}>Dec</button>
-					{/*<DevTools/>*/}
-				</div>
-				<div>Multiple By Two: {appState.multipByTwo}</div>
-				<div>Split By Two: {appState.splitByTwo}</div>
-			</section>
-	)
-});
+	render() {
+		const {appState} = this.props;
+		return (
+				<section>
+					<div>{appState.count}</div>
+					<div>
+						<button onClick={appState.incCount}>Inc</button>
+						<button onClick={appState.decCount}>Dec</button>
+						{/*<DevTools/>*/}
+					</div>
+					<div>Multiple By Two: {appState.multipByTwo}</div>
+					<div>Split By Two: {appState.splitByTwo}</div>
+				</section>
+		)
+	};
+}
 
 export default Counter;
